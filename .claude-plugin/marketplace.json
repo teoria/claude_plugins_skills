@@ -1,11 +1,22 @@
 {
   "name": "teoria-tools",
-  "owner": { "name": "Rodrigo Carneiro" },
+  "owner": {
+    "name": "Rodrigo Carneiro"
+  },
   "plugins": [
     {
       "name": "context-guard",
       "source": "./plugins/context-guard",
       "description": "A pane that charts context tokens per agent and subagent, and alerts when a subagent's context passes 300k."
+    },
+    {
+      "name": "teoria-skills",
+      "description": "Skills collection: slack-business-english.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/slack-business-english"
+      ]
     }
   ]
 }

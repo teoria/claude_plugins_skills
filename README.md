@@ -23,6 +23,20 @@ Its pane opens beside the chat on the next session start, and `/context-guard` r
 
 ## Skills
 
-Copy a skill's folder into `~/.claude/skills/` to use it in every project, or into a project's `.claude/skills/` for that project only.
+All skills install together as one plugin, `teoria-skills`:
+
+```
+/plugin install teoria-skills --marketplace teoria/claude_plugins_skills
+```
+
+Or install one skill with the [skills CLI](https://skills.sh). For example, slack-business-english:
+
+```
+npx skills add teoria/claude_plugins_skills@slack-business-english
+```
+
+Add `-g` to install it for your user (every project) instead of the current project, and `-y` to skip the prompts. `npx skills update` updates installed skills later.
+
+Or copy a skill's folder by hand into `~/.claude/skills/` (every project) or a project's `.claude/skills/` (that project only).
 
 - [slack-business-english](skills/slack-business-english) — turns Portuguese or informal English into short, professional Slack messages.
