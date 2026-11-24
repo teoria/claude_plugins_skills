@@ -16,6 +16,41 @@ The chart, tiles and the MAIN row stay pinned at the top; the mouse wheel or tra
 
 Context is Claude Code's own per-agent reading (latest request input plus the agent's output), so it can read slightly above the true window. The check runs every 5 seconds, so an alert can come a few seconds after the crossing. Workflow agents are not listed by Claude Code, so they do not appear. The limits are constants in `hooks/register.tsx` (`WARN`, `LIMIT`, `MAIN_WARN`, `MAIN_LIMIT`).
 
+## Example
+
+A session with four subagents: the main session spawned a `general-purpose` agent to refactor a billing module, which spawned an `Explore` and a `Plan` agent of its own, plus one more `Explore` at the top level. The refactor agent has passed 300k, so it was alerted once and its row shows `▲` (the `over limit` mark is cut off at this width); it was pressed, so the chart shows its whole run against the 250k and 300k lines. The `Plan` agent is done and draws dimmed. (Colors are left out here: in the terminal each line, tag and number is colored.)
+
+```
+context guard                                              Compact main
+ 472k ┤
+      ┤
+      ┤
+ 342k ┤                                                   ╭──────────
+ 300k ┤┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╭─────╯┄┄┄┄┄┄┄┄┄┄
+ 250k ┤┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╭───╯┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+      ┤                                   ╭─────╯
+      ┤                              ╭────╯
+      ┤                        ╭─────╯
+      ┤                   ╭────╯
+      ┤           ╭───────╯
+    0 ┤───────────╯
+      └ 0s                                                       14m32
+        whole run, start to finish; press its row again for MAIN
+general-purpose · refactor billing module · context 342k (34% of 1.0M) · peak 342k · output 18.4k · 14m32 · over limit
+╭──────────╮ ╭────────╮ ╭─────────╮ ╭───────────╮ ╭──────────╮
+│   312k   │ │   4    │ │    3    │ │   752k    │ │  35.9k   │
+│ main 31% │ │ agents │ │ running │ │ Σ windows │ │ Σ output │
+╰──────────╯ ╰────────╯ ╰─────────╯ ╰───────────╯ ╰──────────╯
+Delegation
+▎●  MAIN  main session                        312k  31%
+▶●  general-purpose  refactor billing modul  ▲342k  34%   ↑18.4k 14m32
+▎├─●  Explore  find invoice callers          58.2k  29%    ↑4.2k  3m10
+▎└─●  Plan  migration plan                    121k  61%    ↑9.7k  6m45
+▎●  Explore  scan test fixtures              40.1k  20%    ↑3.6k  2m02
+```
+
+When it crossed 300k, a toast said `context-guard: "refactor billing module" passed 300k (301k)`, once. The main session, at 31% of its 1.0M window, is under its 70% warning, so its number is green.
+
 ## Install
 
 At the prompt of a Claude Code session in a terminal:
