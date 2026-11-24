@@ -1,0 +1,11 @@
+{
+  "name": "context-guard",
+  "owner": { "name": "Rodrigo Carneiro" },
+  "plugins": [
+    {
+      "name": "context-guard",
+      "source": "./",
+      "description": "A pane that charts context tokens per agent and subagent, and alerts when a subagent's context passes 300k."
+    }
+  ]
+}
