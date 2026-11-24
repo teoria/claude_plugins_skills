@@ -1,32 +1,17 @@
-# context-guard for Claude Code
+# claude_plugins_skills
 
-Shows where every agent's context stands and alerts when a subagent passes 300k tokens.
+Claude Code plugins and skills.
 
-What it does:
+- `plugins/` — one folder per plugin, listed in `.claude-plugin/marketplace.json`.
+- `skills/` — one folder per skill, each with a `SKILL.md`.
 
-- **Context pane.** A pane beside the chat with a line chart, each line's latest value labeled on the y-axis (MAIN, one agent, or one line per running subagent in its own color against the 250k and 300k lines; each agent is checked on its own, nothing is summed), tiles for the main session's context, agent count, running agents, total context and total output, and a delegation tree: one row per subagent, drawn with tree branches (├─ └─) under the agent that spawned it, with its type, task, context, share of its model's context window, output tokens and run time.
-- **MAIN by default.** The chart opens on MAIN, the main session's context over the last 20 minutes, from 0 to the model's window, with no limit lines (250k and 300k are per-agent limits). Press an agent's row to see its whole run spread across the chart from 0s at the left edge to its run time at the right, with a detail line; press it again to go back to MAIN. Press MAIN while it shows to see one line per running subagent.
-- **MAIN at 70% and 80%.** When the main session reaches 70% and then 80% of its model's context window, a toast says so once each, its number turns orange then red, and the MAIN chart draws dashed 70% and 80% lines. Falling back under 70% (after a compaction, say) re-arms both.
-- **Compact main.** A button in the pane's header compacts the main session, as `/compact` does, and a toast reports the size before and after. Claude Code allows it only between turns; pressed during a turn, a toast says to press again when the turn ends. Subagents cannot be compacted on demand: they compact themselves near their own window.
-- **Alert at 300k.** When a subagent's context passes 300k, a toast names it once and its row is marked `over limit`. The agent keeps running: nothing is refused or stopped. The main session is never flagged.
-
-The chart, tiles and the MAIN row stay pinned at the top; the mouse wheel or trackpad over the pane scrolls only the agent list, which shows `rows 5–14 of 30 · scroll for more` when it does not fit.
-
-`/context-guard` reopens the pane. The pane docks beside the chat in the terminal's fullscreen layout from about 144 columns.
-
-Context is Claude Code's own per-agent reading (latest request input plus the agent's output), so it can read slightly above the true window. The check runs every 5 seconds, so an alert can come a few seconds after the crossing. Workflow agents are not listed by Claude Code, so they do not appear. The limits are constants in `hooks/register.tsx` (`WARN`, `LIMIT`, `MAIN_WARN`, `MAIN_LIMIT`).
-
-## Install
-
-At the prompt of a Claude Code session in a terminal:
+## Install a plugin
 
 ```
 /plugin marketplace add teoria/claude_plugins_skills
-/plugin install context-guard@context-guard
+/plugin install <plugin>@teoria
 ```
 
-From a shell: `claude plugin marketplace add teoria/claude_plugins_skills && claude plugin install context-guard@context-guard`.
+## Plugins
 
-## Develop
-
-`claude plugin test .` runs the tests; `claude plugin validate .` checks the manifest and module.
+- [context-guard](plugins/context-guard) — charts context tokens per agent and alerts when a subagent passes 300k.
