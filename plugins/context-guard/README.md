@@ -21,7 +21,7 @@ Context is Claude Code's own per-agent reading (latest request input plus the ag
 A session with four subagents: the main session spawned a `general-purpose` agent to refactor a billing module, which spawned an `Explore` and a `Plan` agent of its own, plus one more `Explore` at the top level. The refactor agent has passed 300k, so it was alerted once and its row shows `▲` (the `over limit` mark is cut off at this width); it was pressed, so the chart shows its whole run against the 250k and 300k lines. The `Plan` agent is done and draws dimmed. (Colors are left out here: in the terminal each line, tag and number is colored.)
 
 ```
-context guard                                              Compact main
+ContextGuard                                               Compact main
  472k ┤
       ┤
       ┤

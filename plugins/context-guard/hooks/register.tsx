@@ -366,7 +366,7 @@ export const register: Register = on => {
     return (
       <Box flexDirection="column">
         <Box flexDirection="row" justifyContent="space-between">
-          <Text bold>context guard</Text>
+          <Text bold>ContextGuard</Text>
           <Button key="compact-main" label="Compact main" onPress={() => { void compactMain($) }} />
         </Box>
         <Box flexDirection="column" overflowX="scroll">
