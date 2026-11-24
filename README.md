@@ -20,3 +20,9 @@ Its pane opens beside the chat on the next session start, and `/context-guard` r
 ## Plugins
 
 - [context-guard](plugins/context-guard) — charts context tokens per agent and alerts when a subagent passes 300k.
+
+## Skills
+
+Copy a skill's folder into `~/.claude/skills/` to use it in every project, or into a project's `.claude/skills/` for that project only.
+
+- [slack-business-english](skills/slack-business-english) — turns Portuguese or informal English into short, professional Slack messages.
