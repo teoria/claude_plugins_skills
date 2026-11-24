@@ -56,11 +56,12 @@ When it crossed 300k, a toast said `context-guard: "refactor billing module" pas
 At the prompt of a Claude Code session in a terminal:
 
 ```
-/plugin marketplace add teoria/claude_plugins_skills
-/plugin install context-guard@teoria
+/plugin install context-guard --marketplace teoria/claude_plugins_skills
 ```
 
-From a shell: `claude plugin marketplace add teoria/claude_plugins_skills && claude plugin install context-guard@teoria`.
+Answer `y` to add the marketplace (`teoria-tools`) the first time, then press Enter to install it for your user.
+
+From a shell: `claude plugin install context-guard --marketplace teoria/claude_plugins_skills`.
 
 ## Develop
 

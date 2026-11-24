@@ -7,14 +7,13 @@ Claude Code plugins and skills.
 
 ## Install a plugin
 
-Add this repo as a marketplace once, then install any plugin from it by `<plugin>@teoria`. For example, context-guard:
+Install any plugin by name, pointing at this repo. For example, context-guard:
 
 ```
-/plugin marketplace add teoria/claude_plugins_skills
-/plugin install context-guard@teoria
+/plugin install context-guard --marketplace teoria/claude_plugins_skills
 ```
 
-From a shell: `claude plugin marketplace add teoria/claude_plugins_skills && claude plugin install context-guard@teoria`.
+Answer `y` to add the marketplace (`teoria-tools`) the first time. From a shell: `claude plugin install context-guard --marketplace teoria/claude_plugins_skills`.
 
 Its pane opens beside the chat on the next session start, and `/context-guard` reopens it. See [its README](plugins/context-guard/README.md) for what the pane shows.
 
